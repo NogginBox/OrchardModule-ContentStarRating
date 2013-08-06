@@ -1,0 +1,4 @@
+syntax: glob
+bin/*
+NogginBox.ContentStarRating.csproj.user
+obj/*

@@ -1,0 +1,11 @@
+﻿Name: Content Star Rating
+AntiForgery: enabled
+Author: Richard Garside - www.nogginbox.co.uk
+Website: http://www.nogginbox.co.uk
+Version: 1.0
+OrchardVersion: 1.0
+Description: Lets the author of a content item add a rating for the thing they're reviewing.
+Features:
+    NogginBox.ContentStarRating:
+        Description: Lets the author of a content item add a rating for the thing they're reviewing.
+		Category: Voting and Rating

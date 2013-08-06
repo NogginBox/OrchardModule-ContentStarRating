@@ -1,0 +1,50 @@
+﻿@{
+    Style.Include("NogginBox.ContentStarRating.css");
+
+    var roundedResult = Model.Rating / 2f;
+    /*var currentResultClass = string.Format("stars-value-{0}", Math.Floor(roundedResult));
+
+    double userRating = Model.ContentPart.Rating.UserRating;
+    var canRateClass = Request.IsAuthenticated ? "stars-can-rate" : "";
+    string toolTip = Request.IsAuthenticated ? "" : "Log-in to rate this item";
+    var userRatingClass = Request.IsAuthenticated && Model.ContentPart.Rating.UserRating > 0 ? string.Format("stars-user-rating-{0}", userRating) : "";*/
+}
+<p>Noggin rating: @Model.Rating - @roundedResult</p>
+
+<div class="stars-current-result">
+	@if (roundedResult == .5){
+	<span class="stars-value-1 star-0-5 a-half-star">@T(".").ToString()</span>
+	<span class="stars-value-1 star-1 a-star a-half-star">@T("-").ToString()</span>
+	}
+	else{
+	<span class="stars-value-1 star-1 a-star">@(Model.Rating > 0 ? T("*").ToString() : T("-").ToString())</span>
+	}
+	@if (roundedResult == 1.5){
+	<span class="star-1-5 a-half-star">@T(".").ToString()</span>
+	<span class="star-2 a-star a-half-star">@T("-").ToString()</span>
+	}
+	else{
+	<span class="star-2 a-star">@(Model.Rating > 1 ? T("*").ToString() : T("-").ToString())</span>
+	}
+	@if (roundedResult == 2.5){
+	<span class="star-2-5 a-half-star">@T(".").ToString()</span>
+	<span class="star-3 a-star a-half-star">@T("-").ToString()</span>
+	}
+	else{
+	<span class="star-3 a-star">@(Model.Rating > 2 ? T("*").ToString() : T("-").ToString())</span>
+	}
+	@if (roundedResult == 3.5){
+	<span class="star-3-5 a-half-star">@T(".").ToString()</span>
+	<span class="star-4 a-star a-half-star">@T("-").ToString()</span>
+	}
+	else{
+	<span class="star-4 a-star">@(Model.Rating > 3 ? T("*").ToString() : T("-").ToString())</span>
+	}
+	@if (roundedResult == 4.5){
+	<span class="star-4-5 a-half-star">@T(".").ToString()</span>
+	<span class="star-5 a-star a-half-star">@T("-").ToString()</span>
+	}
+	else{
+	<span class="star-5 a-star">@(Model.Rating > 4 ? T("*").ToString() : T("-").ToString())</span>
+	}
+</div>
