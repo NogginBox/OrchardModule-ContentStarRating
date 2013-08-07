@@ -1,47 +1,48 @@
 ﻿/* .dyn .stars-rating form {
     display:none;
-}
-.stars-current-result {
+}*/
+.content-rating {
     overflow:hidden;
     padding:6px 0;
-}*/
+}
 
 /*
 the base of the stars.
 
 sprite cheatsheet:
  - 0 0 == empty star (default == grey)
- - 0 -14 == user rating star (default == yellow/gold)
- - 0 -28 == overall rating star (default == red)
- - 0 -42 == inactive "clear stars" icon
- - 0 -56 == active "clear stars" icon
+ - 0 -15 == user rating star (default == yellow/gold)
+ - 0 -30 == overall rating star (default == red)
+ - 0 -45 == inactive "clear stars" icon
+ - 0 -60 == active "clear stars" icon
 */
-.stars-current-result .a-star,
-.stars-current-result .stars-clear {
-    background:url(images/yogis.png) 0 0 no-repeat;
+.content-rating .star {
+    background:url(images/yogis.png) 0 -15px no-repeat;
     display:block;
     float:left;
-    height:14px;
+    height:15px;
     text-indent:-9999em;
     padding:0 1px;
     width:15px;
-}
-.stars-can-rate .a-star,
-.stars-current-result .stars-clear {
-    cursor:pointer;
 }
 
 /*
 half-sized rating stars for the *.5's
 */
-.stars-current-result .a-half-star {
-    background:url(images/stars.png) 0 -28px no-repeat;
+.content-rating .half-star {
+    background:url(images/yogis.png) 0 -15px no-repeat;
     display:block;
     float:left;
-    height:14px;
+    height:15px;
     padding:0 0 0 1px;
     text-indent:-9999em;
     width:7px;
+}
+
+/*
+.stars-can-rate .a-star,
+.stars-current-result .stars-clear {
+    cursor:pointer;
 }
 .stars-can-rate .stars-current-result .a-half-star {
     display:none;
@@ -56,10 +57,10 @@ half-sized rating stars for the *.5's
     padding:0 1px;
     width:15px;
 }
-
+/*
 /*
 clear stars icon/"button"
-*/
+
 .stars-current-result .stars-clear {
     background-position:0 -42px;
 }
@@ -67,10 +68,10 @@ clear stars icon/"button"
 .stars-current-result .stars-clear.active {
     background-position:0 -56px;
 }
-
+*/
 /*
 overall rating stars (default == red) for when the user hasn't rated the item
-*/
+
 .stars-value-1 .star-1, .stars-value-2 .star-1, .stars-value-3 .star-1, .stars-value-4 .star-1, .stars-value-5 .star-1 {
     background-position:0 -28px;
 }
@@ -86,10 +87,9 @@ overall rating stars (default == red) for when the user hasn't rated the item
 .stars-value-5 .star-5 {
     background-position:0 -28px;
 }
-
+*/
 /*
 empty stars beyond the user's rating
-*/
 .stars-user-rating-1 .star-2 {
     background-position:0 0;
 }
@@ -102,13 +102,13 @@ empty stars beyond the user's rating
 .stars-user-rating-1 .star-5, .stars-user-rating-2 .star-5, .stars-user-rating-3 .star-5, .stars-user-rating-4 .star-5 {
     background-position:0 0;
 }
-
+*/
 /*
 user rating star state (default == yellow/gold)
  - first line is for the static display for what the user has rated
  - second and third lines are for showing the correct yellow/gold star when the user puts the cursor over a star (possibly with the intention to rate)
  - fourth line is for overriding a half-star display that could be set for the overral rating. the user's rating should override
-*/
+
 .stars-user-rating-1 .star-1, .stars-user-rating-2 .star-1, .stars-user-rating-3 .star-1, .stars-user-rating-4 .star-1, .stars-user-rating-5 .star-1,
 .stars-can-rate.star-1 .star-1, .stars-can-rate.star-2 .star-1, .stars-can-rate.star-3 .star-1, .stars-can-rate.star-4 .star-1, .stars-can-rate.star-5 .star-1,
 .stars-can-rate.star-1 .star-1.a-half-star, .stars-can-rate.star-2 .star-1.a-half-star, .stars-can-rate.star-3 .star-1.a-half-star, .stars-can-rate.star-4 .star-1.a-half-star, .stars-can-rate.star-5 .star-1.a-half-star,
@@ -139,10 +139,10 @@ user rating star state (default == yellow/gold)
 .stars-can-rate .stars-user-rating-5 .star-5.a-half-star {
     background-position:0 -14px;
 }
-
+*/
 /*
 empty stars (e.g. to the right) for when the user puts the cursor over a star
-*/
+
 .stars-can-rate.star-1 .star-2 {
     background-position:0 0 !important;
 }
@@ -155,8 +155,8 @@ empty stars (e.g. to the right) for when the user puts the cursor over a star
 .stars-can-rate.star-1 .star-5, .stars-can-rate.star-2 .star-5, .stars-can-rate.star-3 .star-5, .stars-can-rate.star-4 .star-5 {
     background-position:0 0 !important;
 }
-
-/* Statistics */
+*/
+/* Statistics 
 
 ul.stars-details {
     margin: 1px 0 0 10px;
@@ -170,8 +170,8 @@ ul.stars-details li:first-child {
     border-right: 1px solid #CCC;
     padding-right: 8px;
 }
-
-/* Reviews */
+*/
+/* Reviews 
 div.reviews-content header {
     clear: both;
 }
@@ -182,7 +182,7 @@ div.reviews-content header > div {
     clear: both;
 }
 div.reviews-content header > div + div {
-    min-width: 0; /* peekaboo bug fix for IE7 */
+    min-width: 0;
 }
 div.reviews-content ul li {
     list-style: none;
@@ -241,3 +241,4 @@ a#showAllReviewsLink {
 a#showAllReviewsLink.less {
     background: url(Images/arrowUp.png) 96% 50% no-repeat;
 }
+*/
