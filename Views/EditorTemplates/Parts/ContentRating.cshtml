@@ -1,0 +1,17 @@
+﻿@{
+	Style.Include("NogginBox.ContentStarRating.css");
+	Script.Require("jQuery");
+	Script.Include("NogginBox.ContentStarRating.js");
+
+	var fullStars = (int)Model.Rating / 2;
+	var halfStar = Model.Rating - fullStars > 0;
+}
+<fieldset>
+	<label>@T("Ratings")</label>
+	<div class="content-rating">
+		@for (var i = 0; i < 5; i++) {
+			var starClass = i > fullStars ? "empty-star" : "";
+			<span class="star star-button star-@i @starClass">@T("*")</span>
+		}
+	</div>
+</fieldset>

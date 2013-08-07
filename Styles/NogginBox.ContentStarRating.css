@@ -39,11 +39,15 @@ half-sized rating stars for the *.5's
     width:7px;
 }
 
-/*
-.stars-can-rate .a-star,
-.stars-current-result .stars-clear {
+.content-rating .empty-star {
+     background:url(images/yogis.png) 0 0 no-repeat;
+ }
+
+.content-rating .star-button {
     cursor:pointer;
 }
+
+/*
 .stars-can-rate .stars-current-result .a-half-star {
     display:none;
 }
