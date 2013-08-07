@@ -1,4 +1,5 @@
-﻿@{
+﻿@model NogginBox.ContentStarRating.Models.ContentRatingPart
+@{
 	Style.Include("NogginBox.ContentStarRating.css");
 	Script.Require("jQuery");
 	Script.Include("NogginBox.ContentStarRating.js");
@@ -9,9 +10,10 @@
 <fieldset>
 	<label>@T("Ratings")</label>
 	<div class="content-rating">
-		@for (var i = 0; i < 5; i++) {
+		@for (var i = 2; i <= 10; i+=2) {
 			var starClass = i > fullStars ? "empty-star" : "";
 			<span class="star star-button star-@i @starClass">@T("*")</span>
 		}
+		@Html.HiddenFor(m => m.Rating)
 	</div>
 </fieldset>

@@ -1,7 +1,8 @@
 ﻿(function ($) {
 	$.fn.extend({
-		helpfullySetTheStars: function () {
-			return $(this).each(function () {
+		contentRatingUI: function () {
+			var stars = $(this).find(".star");
+			return stars.each(function () {
 				var _this = $(this);
 				var forms = _this.parents("form");
 				if (forms.length != 1) {
@@ -55,34 +56,31 @@
 				}*/
 
 				_this.click(function() {
-					var _thisStar = $(this);
-					var ratingMatch = _thisStar.attr("class").match(/\bstar-(\d+)\b/);
+					var thisStar = $(this);
+					var ratingMatch = thisStar.attr("class").match(/\bstar-(\d+)\b/);
 					if (!ratingMatch || ratingMatch.length < 2) {
 						return;
 					}
 
-					var rating = _thisStar.attr("class").match(/\bstar-(\d+)\b/)[1];
+					var rating = +thisStar.attr("class").match(/\bstar-(\d+)\b/)[1];
 
 					var form = $(forms.first());
-					form.find('[name="rating"]')
-						.children('option[value="' + rating + '"]').attr("selected", true);
-					$.post(
-						form.attr("action"),
-						form.serialize()
-					);
+					form.find('[name="Rating"]').val(rating);
 					form = null;
 
-					// not bothering to update the display for a failed vote. first use case to implement might be for a user who's auth session has expired
-					var resultDisplay = _this.find(".stars-current-result").first();
-					var existingUserRating = resultDisplay.attr("class").match(/\bstars-user-rating-\d+\b/);
-					if (existingUserRating && existingUserRating.length > 0) {
-						resultDisplay.removeClass(existingUserRating[0]);
-					}
+					// Update rating stars based on rating
+					stars.each(function () {
+						var aStar = $(this);
+						var starValue = +aStar.attr("class").match(/\bstar-(\d+)\b/)[1];
+						if(starValue <= rating) {
+							aStar.removeClass("empty-star");
+						}
+						else {
+							aStar.addClass("empty-star");
+						}
+					});
 
-					resultDisplay.addClass("stars-user-rating-" + rating);
-					resultDisplay = null;
-
-					addClearVoteUI(_thisStar);
+					//addClearVoteUI(_thisStar);
 				});
 					/*.find(".a-star")
 						.hover(
@@ -96,15 +94,15 @@
 						});*/
 
 				// add the "clear vote" bit
-				if (_this.find(".stars-current-result").first().attr("class").match(/\bstars-user-rating-\d+\b/)) {
+				/*if (_this.find(".stars-current-result").first().attr("class").match(/\bstars-user-rating-\d+\b/)) {
 					addClearVoteUI(_this);
-				}
+				}*/
 
 				return _this;
 			});
 		}
 	});
 	$(function () {
-		$(".content-rating").helpfullySetTheStars();
+		$(".content-rating").contentRatingUI();
 	});
 })(jQuery);
