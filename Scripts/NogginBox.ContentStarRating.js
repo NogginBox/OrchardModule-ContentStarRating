@@ -1,102 +1,58 @@
 ﻿(function ($) {
 	$.fn.extend({
 		contentRatingUI: function () {
+			var forms = $(this).parents("form");
+			if (forms.length != 1) {
+				return $(this);
+			}
+			var hiddenField = $(forms.first()).find('[name="Rating"]');
+			forms = null;
+			
 			var stars = $(this).find(".star");
+			var getStarValue = function(aStar) {
+				var ratingMatch = aStar.attr("class").match(/\bstar-(\d+)\b/);
+				if (!ratingMatch || ratingMatch.length < 2) {
+					return 0;
+				}
+				return +aStar.attr("class").match(/\bstar-(\d+)\b/)[1];
+			};
+			var setStatusClearButton = function (rating) {
+				if (rating > 0) {
+					$(".stars-clear").addClass("active");
+				}
+				else {
+					$(".stars-clear").removeClass("active");
+				}
+			};
+			var setStarRating = function(rating) {
+				hiddenField.val(rating);
+
+				stars.each(function () {
+					var aStar = $(this);
+					var starValue = getStarValue(aStar);
+					if (starValue <= rating) {
+						aStar.removeClass("empty-star");
+					}
+					else {
+						aStar.addClass("empty-star");
+					}
+				});
+				setStatusClearButton(rating);
+
+			};
+			setStatusClearButton(+hiddenField.val());
 			return stars.each(function () {
 				var _this = $(this);
-				var forms = _this.parents("form");
-				if (forms.length != 1) {
-					return _this;
-				}
 
-				/*var clearVote = $("<span class=\"stars-clear\">x</span>");
-				$(".stars-clear").click(
-						function (e) {
-							var _clear_this = $(this);
-
-							OpenDeleteRatingConfirmationDialog();
-
-							$("#confirmDeleteRatingButton").unbind(".rating").bind("click.rating", function () {
-								_clear_this.addClass("active");
-								var form = _clear_this.closest(".content-rating").find("form").first();
-								form.find('[name="rating"]')
-									.children('option[value="-1"]').attr("selected", true);
-								$.post(
-									form.attr("action"),
-									form.serialize()
-								);
-								form = null;
-								var resultDisplay = _clear_this.closest(".stars-current-result").first();
-								var existingUserRating = resultDisplay.attr("class").match(/\bstars-user-rating-\d+\b/);
-								if (existingUserRating && existingUserRating.length > 0) {
-									resultDisplay.removeClass(existingUserRating[0]);
-								}
-								removeClearVoteUI(_clear_this);
-
-								$("#reviewsList li.mine").fadeOut();
-								CloseDeleteRatingConfirmationDialog();
-							});
-
-							e.preventDefault();
-							return false;
-						})
-					.mouseenter(
-						function () { $(this).addClass("mousey"); }
-						)
-					.mouseleave(
-						function () { $(this).removeClass("mousey"); }
-					);
-
-				function addClearVoteUI(fromHere) {
-					fromHere.find(".stars-current-result").first().append(clearVote);
-				}
-
-				function removeClearVoteUI(fromHere) {
-					fromHere.closest(".stars-current-result").first().children(".stars-clear").removeClass("mousey").removeClass("active").remove();
-				}*/
+				$(".stars-clear").click(function () {
+					setStarRating(0);
+				});
 
 				_this.click(function() {
-					var thisStar = $(this);
-					var ratingMatch = thisStar.attr("class").match(/\bstar-(\d+)\b/);
-					if (!ratingMatch || ratingMatch.length < 2) {
-						return;
-					}
+					var rating = getStarValue($(this));
+					setStarRating(rating);
 
-					var rating = +thisStar.attr("class").match(/\bstar-(\d+)\b/)[1];
-
-					var form = $(forms.first());
-					form.find('[name="Rating"]').val(rating);
-					form = null;
-
-					// Update rating stars based on rating
-					stars.each(function () {
-						var aStar = $(this);
-						var starValue = +aStar.attr("class").match(/\bstar-(\d+)\b/)[1];
-						if(starValue <= rating) {
-							aStar.removeClass("empty-star");
-						}
-						else {
-							aStar.addClass("empty-star");
-						}
-					});
-
-					//addClearVoteUI(_thisStar);
 				});
-					/*.find(".a-star")
-						.hover(
-							function () { // mouseenter
-								var _thisStar = $(this);
-								_this.addClass(_thisStar.attr("class").match(/\bstar-\d+\b/)[0]);
-							},
-							function () { // mouseleave
-								var _thisStar = $(this);
-								_this.removeClass(_thisStar.attr("class").match(/\bstar-\d+\b/)[0]);
-						});*/
-
-				// add the "clear vote" bit
-				/*if (_this.find(".stars-current-result").first().attr("class").match(/\bstars-user-rating-\d+\b/)) {
-					addClearVoteUI(_this);
-				}*/
 
 				return _this;
 			});

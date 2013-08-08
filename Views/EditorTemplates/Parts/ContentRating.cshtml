@@ -11,6 +11,7 @@
 			var starClass = i > Model.Rating ? "empty-star" : "";
 			<span class="star star-button star-@i @starClass">@T("*")</span>
 		}
+		<span class="stars-clear">x</span>
 		@Html.HiddenFor(m => m.Rating)
 	</div>
 </fieldset>
