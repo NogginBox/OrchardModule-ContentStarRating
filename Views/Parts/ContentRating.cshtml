@@ -2,7 +2,7 @@
 	Style.Include("NogginBox.ContentStarRating.css");
 
 	var fullStars = (int)Model.Rating / 2;
-	var halfStar = Model.Rating - fullStars > 0;
+	var halfStar = (Model.Rating - fullStars*2) > 0;
 }
 <div class="content-rating">
 	@for (var i = 0; i < fullStars; i++) {
