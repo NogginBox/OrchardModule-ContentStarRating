@@ -12,6 +12,6 @@
 			<span class="star star-button star-@i @starClass">@T("*")</span>
 		}
 		<span class="stars-clear">x</span>
-		@Html.HiddenFor(m => m.Rating)
+		@Html.HiddenFor(m => m.Rating, new {@class="rating"})
 	</div>
 </fieldset>

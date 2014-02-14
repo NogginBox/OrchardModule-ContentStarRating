@@ -5,7 +5,7 @@
 			if (forms.length != 1) {
 				return $(this);
 			}
-			var hiddenField = $(forms.first()).find('[name="Rating"]');
+			var hiddenField = $(this).find('input[type="hidden"].rating');
 			forms = null;
 			
 			var stars = $(this).find(".star");
